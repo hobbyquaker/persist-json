@@ -1,6 +1,6 @@
 {
   "name": "persist-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Persist an object as JSON file",
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,4 @@
-# persist-path
+# persist-json
 
 [![License][mit-badge]][mit-url]
 [![NPM version](https://badge.fury.io/js/persist-json.svg)](http://badge.fury.io/js/persist-json)
