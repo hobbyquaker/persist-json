@@ -16,17 +16,17 @@ describe('instantiate', function () {
     });
     it('should throw an error if instantiating without name', function () {
         (function () {
-            pjson = require('./index.js')();
+            require('./index.js')();
         }).should.throw();
     });
     it('should throw an error if instantiating with invalid name', function () {
         (function () {
-            pjson = require('./index.js')('');
+            require('./index.js')('');
         }).should.throw();
     });
     it('should throw an error if instantiating with invalid name', function () {
         (function () {
-            pjson = require('./index.js')(false);
+            require('./index.js')(false);
         }).should.throw();
     });
 });
@@ -60,6 +60,26 @@ describe('error handling', function () {
         pjson.load('missing', function (err, data) {
             done(!err);
         });
+    });
+    it('should throw an error when calling load with missing filename', function () {
+        (function () {
+            pjson.load();
+        }).should.throw();
+    });
+    it('should throw an error when calling save with missing filename', function () {
+        (function () {
+            pjson.save();
+        }).should.throw();
+    });
+    it('should throw an error when calling load with empty filename', function () {
+        (function () {
+            pjson.load('');
+        }).should.throw();
+    });
+    it('should throw an error when calling save with empty filename', function () {
+        (function () {
+            pjson.save('');
+        }).should.throw();
     });
     it('should return undefined if synchronously trying to load invalid file', function () {
         fs.writeFileSync(path + '/invalid', 'this-is-not-json');
