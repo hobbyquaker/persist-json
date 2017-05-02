@@ -1,8 +1,11 @@
 # persist-json
 
-[![License][mit-badge]][mit-url]
 [![NPM version](https://badge.fury.io/js/persist-json.svg)](http://badge.fury.io/js/persist-json)
 [![Dependency Status](https://img.shields.io/gemnasium/hobbyquaker/persist-json.svg?maxAge=2592000)](https://gemnasium.com/github.com/hobbyquaker/persist-json)
+[![Build Status](https://travis-ci.org/hobbyquaker/persist-json.svg?branch=master)](https://travis-ci.org/hobbyquaker/persist-json)
+[![Coverage Status](https://coveralls.io/repos/github/hobbyquaker/persist-json/badge.svg?branch=master)](https://coveralls.io/github/hobbyquaker/persist-json?branch=master)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![License][mit-badge]][mit-url]
 
 > Persist an object as plain JSON file
 
@@ -25,13 +28,10 @@ On asynchronous usage the callback is called with the params of `fs.writeFileSyn
 
 #### *object|undefined* load( *string* filename [, *function* callback ] )
 
-See [test.js](test.js) for usage examples.
-
 
 # License
 
-MIT (c) 2016 [Sebastian Raff](https://github.com/hobbyquaker)
+MIT (c) 2016-2017 [Sebastian Raff](https://github.com/hobbyquaker)
 
 [mit-badge]: https://img.shields.io/badge/License-MIT-blue.svg?style=flat
 [mit-url]: LICENSE
-
