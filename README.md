@@ -29,6 +29,16 @@ On asynchronous usage the callback is called with the params of `fs.writeFileSyn
 #### *object|undefined* load( *string* filename [, *function* callback ] )
 
 
+## Secure mode
+
+```Javascript
+var pjson = require('persist-json')('project-name', {secure: true});
+```
+
+Secure mode saves the file first with suffixed `.new`, then renames an eventually existing `file` to `file.bak` and then
+renames the `file.new` file to `file`.
+
+
 # License
 
 MIT (c) 2016-2017 [Sebastian Raff](https://github.com/hobbyquaker)

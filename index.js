@@ -2,14 +2,16 @@ var fs = require('fs');
 var ppath = require('persist-path');
 var mkdirp = require('mkdirp');
 
-function Pjson(folder) {
+function Pjson(folder, options) {
     if (!(this instanceof Pjson)) {
-        return new Pjson(folder);
+        return new Pjson(folder, options);
     }
     if (typeof folder !== 'string' || folder === '') {
         throw new Error('param folder missing');
     }
     this.folder = folder;
+    this.options = options || {};
+
     var p = ppath(folder);
     mkdirp(p);
 }
@@ -21,10 +23,33 @@ Pjson.prototype.save = function (file, content, cb) {
     var json = JSON.stringify(content, null, '  ');
     file = ppath(this.folder, file);
     if (typeof cb === 'function') {
-        fs.writeFile(file, json, cb);
-    } else {
-        return fs.writeFileSync(file, json);
+        if (this.options.secure) {
+            fs.writeFile(file + '.new', json, err => {
+                /* istanbul ignore if */
+                if (err) {
+                    cb(err);
+                } else {
+                    fs.rename(file, file + '.bak', () => {
+                        fs.rename(file + '.new', file, err => {
+                            cb(err);
+                        });
+                    });
+                }
+            });
+        } else {
+            fs.writeFile(file, json, cb);
+        }
+    } else if (this.options.secure) {
+        fs.writeFileSync(file + '.new', json);
+        try {
+            fs.renameSync(file, file + '.bak');
+        } catch (err) {
+
+        }
+        fs.renameSync(file + '.new', file);
+        return;
     }
+    return fs.writeFileSync(file, json);
 };
 
 Pjson.prototype.load = function (file, cb) {
